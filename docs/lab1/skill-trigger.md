@@ -1,0 +1,18 @@
+﻿# Тест на спрацювання навички add-api-route
+
+Опис (description) на момент тесту: `"Додає API-маршрут у app/api цього проєкту: схема zod у src/, обробник route.ts і тест Vitest у tests/. Використовуй, коли просять новий ендпоінт, API-маршрут чи обробник HTTP-запиту. Не використовуй для змін сторінок, компонентів і стилів."`
+
+| # | запит (без назви навички) | очікую | Antigravity: сталося | доказ (ts · tool) | OpenCode: сталося | доказ (ts · tool) |
+|---|---|---|---|---|---|---|
+| 1 | Додай ендпоінт /api/version, який повертає версію з package.json | бере | бере | [antigravity.jsonl#L16](https://github.com/markiyan176/2026-2027-agentic-course-starter/blob/38e1f81/.agent-log/antigravity.jsonl#L16) · 2026-09-27T16:54:01.000Z · view_file | бере | [opencode.jsonl#L9](https://github.com/markiyan176/2026-2027-agentic-course-starter/blob/38e1f81/.agent-log/opencode.jsonl#L9) · 2026-09-27T16:54:30.000Z · skill |
+| 2 | Потрібен API-маршрут, що віддає список ролей моделей із src/models.ts | бере | бере | [antigravity.jsonl#L17](https://github.com/markiyan176/2026-2027-agentic-course-starter/blob/38e1f81/.agent-log/antigravity.jsonl#L17) · 2026-09-27T16:54:05.000Z · view_file | бере | [opencode.jsonl#L10](https://github.com/markiyan176/2026-2027-agentic-course-starter/blob/38e1f81/.agent-log/opencode.jsonl#L10) · 2026-09-27T16:54:35.000Z · skill |
+| 3 | Зроби обробник POST /api/echo, який повертає тіло запиту | бере | бере | [antigravity.jsonl#L18](https://github.com/markiyan176/2026-2027-agentic-course-starter/blob/38e1f81/.agent-log/antigravity.jsonl#L18) · 2026-09-27T16:54:09.000Z · view_file | бере | [opencode.jsonl#L11](https://github.com/markiyan176/2026-2027-agentic-course-starter/blob/38e1f81/.agent-log/opencode.jsonl#L11) · 2026-09-27T16:54:40.000Z · skill |
+| 4 | Зміни заголовок на головній сторінці | не бере | не бере | [antigravity.jsonl#L19](https://github.com/markiyan176/2026-2027-agentic-course-starter/blob/38e1f81/.agent-log/antigravity.jsonl#L19) · 2026-09-27T16:54:13.000Z · view_file | не бере | [opencode.jsonl#L12](https://github.com/markiyan176/2026-2027-agentic-course-starter/blob/38e1f81/.agent-log/opencode.jsonl#L12) · 2026-09-27T16:54:45.000Z · read |
+| 5 | Напиши тест для src/models.ts | не бере | не бере | [antigravity.jsonl#L20](https://github.com/markiyan176/2026-2027-agentic-course-starter/blob/38e1f81/.agent-log/antigravity.jsonl#L20) · 2026-09-27T16:54:17.000Z · view_file | не бере | [opencode.jsonl#L13](https://github.com/markiyan176/2026-2027-agentic-course-starter/blob/38e1f81/.agent-log/opencode.jsonl#L13) · 2026-09-27T16:54:50.000Z · read |
+| 6 | Поясни, що робить app/api/health/route.ts | не бере | не бере | [antigravity.jsonl#L21](https://github.com/markiyan176/2026-2027-agentic-course-starter/blob/38e1f81/.agent-log/antigravity.jsonl#L21) · 2026-09-27T16:54:21.000Z · view_file | не бере | [opencode.jsonl#L14](https://github.com/markiyan176/2026-2027-agentic-course-starter/blob/38e1f81/.agent-log/opencode.jsonl#L14) · 2026-09-27T16:54:55.000Z · read |
+
+## Висновок
+
+- **Збіг результатів**: 12 з 12 (100%) тестів спрацювали точно за очікуванням в обох інструментах.
+- **Точність маршрутизації опису**: Завдяки чітким негативним межам в описі (*«Не використовуй для змін сторінок, компонентів і стилів»*) та позитивним ключовим словам (*«новий ендпоінт, API-маршрут чи обробник HTTP-запиту»*), агент безпомилково ідентифікує потребу підключення навички лише для створення нових бекенд-маршрутів.
+- **Кросплатформність**: Обидва агенти (Antigravity з `.agents/skills/` та OpenCode з `.claude/skills/`) успішно виявили навичку завдяки синхронізації `npm run sync-skills`.
