@@ -1,0 +1,40 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"scripts/agent-log-hook.mjs\" claude-code ok",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"scripts/agent-log-hook.mjs\" claude-code error",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e 'let d=\"\";process.stdin.on(\"data\",c=>d+=c);process.stdin.on(\"end\",()=>{const p=JSON.parse(d||`{}`);const fp=(p.tool_input?.file_path||``);if(fp.endsWith(`.env`)||fp.endsWith(`.env.local`)){process.stdout.write(JSON.stringify({hookSpecificOutput:{hookEventName:`PreToolUse`,permissionDecision:`deny`,permissionDecisionReason:`Політика курсу: .env і .env.local редагує людина, не агент.`}}));}process.exit(0);})'",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
