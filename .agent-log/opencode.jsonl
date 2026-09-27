@@ -12,3 +12,6 @@
 {"ts":"2026-09-27T16:54:45.000Z","tool":"read","input":{"filePath":"app/page.tsx"},"result":"ok","session":"session-step04-opencode-4","source":"opencode"}
 {"ts":"2026-09-27T16:54:50.000Z","tool":"read","input":{"filePath":"src/models.ts"},"result":"ok","session":"session-step04-opencode-5","source":"opencode"}
 {"ts":"2026-09-27T16:54:55.000Z","tool":"read","input":{"filePath":"app/api/health/route.ts"},"result":"ok","session":"session-step04-opencode-6","source":"opencode"}
+{"ts":"2026-09-27T16:56:56.590Z","tool":"write","input":{"filePath":".env"},"result":"denied","session":"session-step05-denial-1","source":"opencode"}
+{"ts":"2026-09-27T16:56:56.716Z","tool":"bash","input":{"command":"echo TEST_SECRET=*** >> .env"},"result":"denied","session":"session-step05-denial-2","source":"opencode"}
+{"ts":"2026-09-27T16:56:56.875Z","tool":"bash","input":{"command":"node -e \"require('fs').appendFileSync('.env.local', 'KEY=***"},"result":"denied","session":"session-step05-denial-3","source":"opencode"}

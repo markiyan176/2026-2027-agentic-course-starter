@@ -8,6 +8,6 @@
 | Режим плану | **працює без змін** (вбудований Plan Mode, формує план без зміни коду) | **потрібна адаптація** (налаштування агента `plan` у `opencode.json` з `permission: { edit: deny, bash: deny }`) |
 | Журнал дій | **потрібна адаптація** (запис 6-полярного JSONL у `.agent-log/antigravity.jsonl` через обгортки) | **потрібна адаптація** (плагін `.opencode/plugins/agent-log.js` на хуках `tool.execute.after`) |
 | Навичка (Skill) | **потрібна адаптація** (читає з `.agents/skills/`, потребує `npm run sync-skills` із `.claude/skills/`) | **працює без змін** (читає нативно з `.claude/skills/` та `.opencode/skills/`) |
-| Заборона (.env) | *крок 05* | *крок 05* |
-| MCP | *крок 05* | *крок 05* |
+| Заборона (.env) | **потрібна адаптація** (хук `scripts/guard-env.mjs` для `write_to_file` і shell-команд, що пише `denied`) | **потрібна адаптація** (маски в `opencode.json` + плагін `.opencode/plugins/guard-env.js` для запису `denied` на bash) |
+| MCP | **працює без змін** (підключення серверів через протокол Model Context Protocol) | **працює без змін** (підтримує remote HTTP MCP сервери через секцію `mcp` у `opencode.json`) |
 | Скріншот-тест | *крок 06* | *крок 06* |
