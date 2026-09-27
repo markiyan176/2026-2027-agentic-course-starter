@@ -13,6 +13,7 @@ export default defineConfig({
   retries: process.env['CI'] ? 1 : 0,
   use: {
     baseURL: BASE_URL,
+    channel: process.env['PLAYWRIGHT_CHANNEL'] || (process.env['CI'] ? undefined : 'chrome'),
     // Скріншот як доказ: зберігається у test-results/ і чіпляється до звіту.
     screenshot: 'on',
     trace: 'retain-on-failure',
