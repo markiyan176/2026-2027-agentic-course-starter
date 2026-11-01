@@ -49,3 +49,6 @@
 {"ts":"2026-09-27T17:09:45.000Z","tool":"write_to_file","input":{"filePath":"docs/lab1/README.md"},"result":"ok","session":"session-step11","source":"antigravity"}
 {"ts":"2026-09-27T17:10:00.000Z","tool":"write_to_file","input":{"filePath":"docs/lab1/autonomy-log.md"},"result":"ok","session":"session-step11","source":"antigravity"}
 {"ts":"2026-09-27T17:10:15.000Z","tool":"run_command","input":{"command":"npm test"},"result":"ok","session":"session-step11","source":"antigravity"}
+
+{"ts":"2026-11-01T21:59:00.000Z","tool":"invoke_subagent","input":{"subagent_type":"explorer","role":"Read-Only Codebase Explorer","prompt":"Який файл ми щойно правили в основній розмові? І склади коротку карту точок входу в src/ та scripts/ (до 20 рядків)."},"result":"ok","session":"session-lab2-step02-explorer","source":"antigravity"}
+{"ts":"2026-11-01T21:59:10.000Z","tool":"invoke_subagent","input":{"subagent_type":"spec-auditor","role":"Read-Only Spec Auditor","prompt":"Перевір коміт b5d95df (scripts/validate-golden.ts, tests/validate-golden.test.ts, docs/lab2/golden/queries.jsonl) проти критеріїв приймання A1..A8."},"result":"ok","session":"session-lab2-step02-auditor","source":"antigravity"}
