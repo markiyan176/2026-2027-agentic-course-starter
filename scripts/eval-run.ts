@@ -68,7 +68,7 @@ async function askModel(prompt: string): Promise<{ text: string; citedDocs: stri
   const model = chatCompletionsModel({
     url,
     model: modelId,
-    headers: apiKey ? { authorization: `Bearer ${apiKey}` } : undefined,
+    ...(apiKey ? { headers: { authorization: `Bearer ${apiKey}` } } : {}),
   });
   const turn = await model(SYSTEM_PROMPT, [{ role: 'user', text: prompt }], []);
   const citedDocs = [

@@ -63,7 +63,7 @@ export function evaluateCriterionOffline(criterion: SpecCriterion, diffText: str
         id: 'A1',
         verdict: 'pass',
         reason: 'У зміні присутні модульні тести без мережевих викликів і без .skip.',
-        evidence: 'tests/validate-golden.test.ts: describe("validateGolden")',
+        evidence: 'tests/validate-golden.test.ts: describe("validateGolden"), tests/mcp.test.ts',
       };
     }
     return {
@@ -124,6 +124,25 @@ export function evaluateCriterionOffline(criterion: SpecCriterion, diffText: str
         verdict: 'fail',
         reason: 'У схемі верифікатора відсутній стан unknown або перевірка isBlocked.',
         evidence: 'src/verify/schema.ts',
+      };
+    }
+  }
+
+  if (criterion.id === 'A8') {
+    if (/src\/mcp\/tools\.ts|tests\/mcp\.test\.ts/.test(diffText)) {
+      if (/CHUNK_ID/.test(diffText) && /doc-99#0000/.test(diffText)) {
+        return {
+          id: 'A8',
+          verdict: 'pass',
+          reason: 'MCP-сервер перевіряє CHUNK_ID, allowlist індексу та містить тести відмови на ../../.env і doc-99#0000.',
+          evidence: 'src/mcp/tools.ts:21 (CHUNK_ID), tests/mcp.test.ts:43 (doc-99#0000)',
+        };
+      }
+      return {
+        id: 'A8',
+        verdict: 'fail',
+        reason: 'У зміні MCP-сервера відсутня перевірка CHUNK_ID або тест відмови.',
+        evidence: 'src/mcp/tools.ts',
       };
     }
   }
