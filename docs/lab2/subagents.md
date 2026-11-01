@@ -2,11 +2,13 @@
 
 Інструмент і версія: Google Antigravity (`invoke_subagent` / Claude Code `.claude/agents/`) + OpenCode (`.opencode/agents/`) · Дата: 2026-11-01
 
-## Розподіл
-| Субагент | Пункти специфікації | Інструменти | Модель | Файл конфігурації |
-|---|---|---|---|---|
-| `spec-auditor` | Критерії приймання `A1–A8` із розділу 6 `docs/lab2/spec.md` | `Read, Grep, Glob` (тільки читання; `edit: deny, bash: deny`) | `inherit` | [`.claude/agents/spec-auditor.md`](../../.claude/agents/spec-auditor.md), [`.opencode/agents/spec-auditor.md`](../../.opencode/agents/spec-auditor.md) |
-| `explorer` | Обсяг роботи v1 (розділ 5 `spec.md`), інвентаризація точок входу в `src/`, `scripts/`, `tests/` | `Read, Grep, Glob` (тільки читання; `edit: deny, bash: deny`) | `inherit` | [`.claude/agents/explorer.md`](../../.claude/agents/explorer.md), [`.opencode/agents/explorer.md`](../../.opencode/agents/explorer.md) |
+## Розподіл та залежності (зв'язок із графом у [`docs/lab2/budget.md`](./budget.md))
+| Субагент | Пункти специфікації | Від чого залежить / чий результат потрібен на вході | Інструменти | Модель | Файл конфігурації |
+|---|---|---|---|---|---|
+| `explorer` | Обсяг роботи v1 (розділ 5 `spec.md`), інвентаризація точок входу в `src/`, `scripts/`, `tests/` | Залежить лише від наявності `docs/lab2/spec.md` та вихідного дерева репозиторію; запускається **першим** перед будь-яким кодуванням | `Read, Grep, Glob` (тільки читання; `edit: deny, bash: deny`) | `inherit` | [`.claude/agents/explorer.md`](../../.claude/agents/explorer.md), [`.opencode/agents/explorer.md`](../../.opencode/agents/explorer.md) |
+| `spec-auditor` | Критерії приймання `A1–A8` із розділу 6 `docs/lab2/spec.md` | Потребує на вході зафіксований `docs/lab2/spec.md` та готовий git-diff (`docs/lab2/verify-input.diff` або SHA коміту) після завершення однопотокового запису коду | `Read, Grep, Glob` (тільки читання; `edit: deny, bash: deny`) | `inherit` | [`.claude/agents/spec-auditor.md`](../../.claude/agents/spec-auditor.md), [`.opencode/agents/spec-auditor.md`](../../.opencode/agents/spec-auditor.md) |
+
+> Повний граф залежностей усіх частин роботи (DAG), бюджет токенів/часу та порівняння послідовного (`width = 1`) і паралельного (`width = 4`) прогонів наведено у [`docs/lab2/budget.md`](./budget.md).
 
 ## Що субагент бачить
 - Власний системний промпт (тіло файлу `.claude/agents/<name>.md` або `.opencode/agents/<name>.md`).
@@ -49,7 +51,7 @@ A8 | unknown — у наданому diff відсутні docs/lab2/mcp-spec.md
 - Записи виклику субагентів `explorer` та `spec-auditor` у журналі основної платформи: [`.agent-log/antigravity.jsonl` (рядки 52–53)](../../.agent-log/antigravity.jsonl#L52-L53)
 - Записи виклику у форматі другого інструменту (OpenCode): [`.agent-log/opencode.jsonl` (рядки 18–19)](../../.agent-log/opencode.jsonl#L18-L19)
 
-## Як зводяться результати та граф залежностей (доповнюється на кроці 07)
+## Як зводяться результати
 - Обидва субагенти (`explorer` та `spec-auditor`) працюють виключно в режимі **читання** (`Read, Grep, Glob`) і не можуть створювати стан гонитви у файловій системі.
-- Рішення за звітами приймає головний агент кодування під контролем людини: спершу `explorer` повертає карту точок входу (до 20 рядків), далі виконується **однопотоковий запис** коду в основній сесії, після чого `spec-auditor` перевіряє утворений diff проти критеріїв `A1..A8`.
+- Рішення за звітами приймає головний агент кодування під контролем людини: спершу `explorer` повертає карту точок входу (до 20 рядків), далі виконується **однопотоковий запис** коду в основній сесії, після чого `spec-auditor` та міжмодельний верифікатор `scripts/verify.ts` перевіряють утворений diff проти критеріїв `A1..A8`.
 - Повний граф залежностей паралельних гілок та бюджет токенів при оцінюванні `20` запитів еталонного набору наведено у документі [`docs/lab2/budget.md`](./budget.md) (крок 07).

@@ -1,0 +1,138 @@
+{
+  "runAt": "2026-11-01T22:14:12.851Z",
+  "budget": {
+    "maxBranches": 4,
+    "maxTokens": 30000,
+    "maxWallMs": 180000
+  },
+  "wallMs": 1225,
+  "sumBranchMs": 4577,
+  "inputTokens": 16421,
+  "outputTokens": 1302,
+  "done": 20,
+  "failed": [],
+  "stoppedEarly": false,
+  "stoppedReason": "none",
+  "branches": [
+    {
+      "id": "q-01",
+      "inputTokens": 780,
+      "outputTokens": 64,
+      "ms": 257
+    },
+    {
+      "id": "q-02",
+      "inputTokens": 792,
+      "outputTokens": 58,
+      "ms": 235
+    },
+    {
+      "id": "q-03",
+      "inputTokens": 810,
+      "outputTokens": 62,
+      "ms": 255
+    },
+    {
+      "id": "q-04",
+      "inputTokens": 805,
+      "outputTokens": 68,
+      "ms": 252
+    },
+    {
+      "id": "q-05",
+      "inputTokens": 790,
+      "outputTokens": 54,
+      "ms": 201
+    },
+    {
+      "id": "q-06",
+      "inputTokens": 825,
+      "outputTokens": 66,
+      "ms": 229
+    },
+    {
+      "id": "q-07",
+      "inputTokens": 815,
+      "outputTokens": 70,
+      "ms": 229
+    },
+    {
+      "id": "q-08",
+      "inputTokens": 798,
+      "outputTokens": 65,
+      "ms": 211
+    },
+    {
+      "id": "q-09",
+      "inputTokens": 804,
+      "outputTokens": 57,
+      "ms": 200
+    },
+    {
+      "id": "q-10",
+      "inputTokens": 830,
+      "outputTokens": 60,
+      "ms": 216
+    },
+    {
+      "id": "q-11",
+      "inputTokens": 860,
+      "outputTokens": 78,
+      "ms": 246
+    },
+    {
+      "id": "q-12",
+      "inputTokens": 875,
+      "outputTokens": 76,
+      "ms": 247
+    },
+    {
+      "id": "q-13",
+      "inputTokens": 850,
+      "outputTokens": 72,
+      "ms": 246
+    },
+    {
+      "id": "q-14",
+      "inputTokens": 880,
+      "outputTokens": 82,
+      "ms": 246
+    },
+    {
+      "id": "q-15",
+      "inputTokens": 845,
+      "outputTokens": 64,
+      "ms": 230
+    },
+    {
+      "id": "q-16",
+      "inputTokens": 760,
+      "outputTokens": 48,
+      "ms": 184
+    },
+    {
+      "id": "q-17",
+      "inputTokens": 755,
+      "outputTokens": 42,
+      "ms": 184
+    },
+    {
+      "id": "q-18",
+      "inputTokens": 762,
+      "outputTokens": 44,
+      "ms": 185
+    },
+    {
+      "id": "q-19",
+      "inputTokens": 890,
+      "outputTokens": 84,
+      "ms": 262
+    },
+    {
+      "id": "q-20",
+      "inputTokens": 895,
+      "outputTokens": 88,
+      "ms": 262
+    }
+  ]
+}
