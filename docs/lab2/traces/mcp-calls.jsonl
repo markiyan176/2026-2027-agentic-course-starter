@@ -1,0 +1,9 @@
+{"ts":"2026-11-01T22:21:42.866Z","source":"unknown","tool":"search_corpus","args":{"query":"код помилки E-418","topK":5},"result":"ok","hits":5}
+{"ts":"2026-11-01T22:21:49.504Z","source":"unknown","tool":"fetch_chunk","args":{"id":"doc-99#0000"},"result":"refused","why":"Error: фрагмента doc-99#0000 немає в індексі"}
+{"ts":"2026-11-01T22:24:03.077Z","source":"lab2-app","tool":"search_corpus","args":{"query":"код помилки E-418","topK":3},"result":"ok","hits":3}
+{"ts":"2026-11-01T22:24:03.087Z","source":"lab2-app","tool":"fetch_chunk","args":{"id":"doc-01#0000"},"result":"ok"}
+{"ts":"2026-11-01T22:24:03.089Z","source":"lab2-app","tool":"fetch_chunk","args":{"id":"doc-99#0000"},"result":"refused","why":"Error: фрагмента doc-99#0000 немає в індексі"}
+{"ts":"2026-11-01T22:24:15.318Z","source":"unknown","tool":"search_corpus","args":{"query":"код зупинки SA-STOP-09","topK":5},"result":"ok","hits":5}
+{"ts":"2026-11-01T22:24:18.744Z","source":"unknown","tool":"fetch_chunk","args":{"id":"doc-01#0001"},"result":"ok"}
+{"ts":"2026-11-01T22:24:41.021Z","source":"opencode","tool":"search_corpus","args":{"query":"код зупинки SA-STOP-09","topK":5},"result":"ok","hits":5}
+{"ts":"2026-11-01T22:24:44.424Z","source":"opencode","tool":"fetch_chunk","args":{"id":"doc-01#0001"},"result":"ok"}
