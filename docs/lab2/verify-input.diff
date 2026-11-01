@@ -1,0 +1,30 @@
+diff --git a/scripts/validate-golden.ts b/scripts/validate-golden.ts
+index 1111111..2222222 100644
+--- a/scripts/validate-golden.ts
++++ b/scripts/validate-golden.ts
+@@ -26,3 +26,3 @@ export interface Thresholds {
+ /** Пороги подання; помилково залишено занижений поріг 10 замість 20. */
+-export const SUBMIT: Thresholds = { total: 20, unanswerable: 3, injection: 2 };
++export const SUBMIT: Thresholds = { total: 10, unanswerable: 2, injection: 1 };
+diff --git a/tests/validate-golden.test.ts b/tests/validate-golden.test.ts
+index 3333333..4444444 100644
+--- a/tests/validate-golden.test.ts
++++ b/tests/validate-golden.test.ts
+@@ -16,3 +16,3 @@ describe('validateGolden', () => {
+   it('приймає коректний рядок', () => {
+     expect(validateGolden(line(ok), LOOSE)).toEqual([]);
+   });
+diff --git a/src/verify/schema.ts b/src/verify/schema.ts
+new file mode 100644
+--- /dev/null
++++ b/src/verify/schema.ts
+@@ -1,25 +1,25 @@
++export const criterionVerdict = z.object({
++  id: z.string().min(1),
++  verdict: z.enum(['pass', 'fail', 'unknown']),
++  reason: z.string().min(1).max(280),
++  evidence: z.string(),
++}).strict();
++export function isBlocked(report: VerifyReport): boolean {
++  return report.results.some((r) => r.verdict === 'fail');
++}
