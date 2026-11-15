@@ -1,0 +1,31 @@
+{
+  "task_id": "t-05",
+  "agent_path": "gemini-cli",
+  "artifact_dir": "docs/lab3/runs/t-05-1794764520000",
+  "started_at": "2026-11-15T16:22:00.000Z",
+  "ended_at": "2026-11-15T16:22:16.200Z",
+  "duration_s": 16.2,
+  "exit_status": "agent_failed",
+  "acceptance": [
+    {
+      "cmd": "npm run typecheck",
+      "exit": 0
+    },
+    {
+      "cmd": "npm test -- tests/retrieval.test.ts",
+      "exit": 1
+    }
+  ],
+  "acceptance_passed": false,
+  "session_id": "gem-sess-t05-3e9a1b44",
+  "input_tokens": 2150,
+  "output_tokens": 480,
+  "cost_usd_estimate": 0.0022,
+  "trace_id": "9c4e1a23b8d74501a2f3e4d5678901f3",
+  "gates": {
+    "types": "pass",
+    "lint": "pass",
+    "tests": "fail",
+    "build": "skipped"
+  }
+}

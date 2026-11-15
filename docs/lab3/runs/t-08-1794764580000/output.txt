@@ -1,0 +1,9 @@
+{
+  "session_id": "gem-sess-t08-5f1d9c08",
+  "response": "Budget limit reached: Reached max turns (max_turns=6)",
+  "usage": {
+    "input_tokens": 3120,
+    "output_tokens": 640
+  },
+  "total_cost_usd": 0.0031
+}

@@ -1,0 +1,9 @@
+{
+  "session_id": "gem-sess-t05-3e9a1b44",
+  "response": "Змінено константу згладжування k у src/rag/rrf.ts на 0, але модульний тест tests/retrieval.test.ts завершився з помилкою ділення в RRF.",
+  "usage": {
+    "input_tokens": 2150,
+    "output_tokens": 480
+  },
+  "total_cost_usd": 0.0022
+}

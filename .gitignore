@@ -11,7 +11,9 @@ dist/
 .env.local
 .env.*.local
 
-# Артефакти тестів
+# Артефакти тестів та сирі робочі теки харнеса (Лаб. 3)
+# Відібрані артефакти прогонів у docs/lab3/runs/ комітяться як докази.
+/runs/
 test-results/
 playwright-report/
 blob-report/
@@ -21,6 +23,7 @@ coverage/
 .DS_Store
 Thumbs.db
 *.log
+!docs/lab3/runs/**/agent.log
 
 # УВАГА: тека .agent-log/ НЕ ігнорується навмисно.
 # Журнал дій агента — це пакет доказів лабораторної роботи, він має бути

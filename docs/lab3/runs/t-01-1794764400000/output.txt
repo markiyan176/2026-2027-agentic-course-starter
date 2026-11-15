@@ -1,0 +1,16 @@
+{
+  "session_id": "gem-sess-t01-9a4f2c1b",
+  "response": "Додано граничну перевірку нульової кількості вхідних і вихідних токенів у tests/cost.test.ts. Обидві команди acceptance (typecheck та vitest) завершилися з кодом 0.",
+  "usage": {
+    "input_tokens": 1420,
+    "output_tokens": 310
+  },
+  "stats": {
+    "tokens": {
+      "prompt": 1420,
+      "candidates": 310,
+      "total": 1730
+    }
+  },
+  "total_cost_usd": 0.0014
+}

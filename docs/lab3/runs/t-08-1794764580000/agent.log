@@ -1,0 +1,9 @@
+[gemini-cli v0.57.0] headless mode (-p) started in worktree ..\harness-runs\t-08
+[policy] approval-mode=auto_edit allowed-tools=read_file,edit,write_file,run_shell_command
+[tool] read_file scripts/parallel-eval.ts (step 1)
+[tool] read_file tests/parallel-eval.test.ts (step 2)
+[tool] read_file docs/lab2/budget.md (step 3)
+[tool] read_file src/metrics.ts (step 4)
+[tool] read_file scripts/eval-run.ts (step 5)
+[tool] read_file package.json (step 6)
+Budget limit reached: Reached max turns (6) before making edits.

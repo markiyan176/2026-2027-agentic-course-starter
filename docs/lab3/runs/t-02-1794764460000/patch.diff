@@ -1,0 +1,12 @@
+diff --git a/src/verify/schema.ts b/src/verify/schema.ts
+index 1a2b3c4..5d6e7f8 100644
+--- a/src/verify/schema.ts
++++ b/src/verify/schema.ts
+@@ -21,5 +21,6 @@ export type VerifyReport = z.infer<typeof verifyReport>;
+ 
+-/** Брама: червоно, щойно є хоч один fail. unknown браму не валить, але потрапляє у звіт. */
++/** У харнесі Лаб. 3 брама блокує все, що не pass (зокрема unknown). */
+ export function isBlocked(report: VerifyReport): boolean {
+-  return report.results.some((r) => r.verdict === 'fail');
++  return report.results.some((r) => r.verdict !== 'pass');
+ }

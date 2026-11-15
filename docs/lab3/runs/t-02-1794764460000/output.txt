@@ -1,0 +1,9 @@
+{
+  "session_id": "gem-sess-t02-7c3d8e12",
+  "response": "Оновлено функцію isBlocked у src/verify/schema.ts так, щоб у автономному харнесі блокувався будь-який вердикт, відмінний від pass (включно з unknown), та оновлено модульні тести tests/verify.test.ts.",
+  "usage": {
+    "input_tokens": 1680,
+    "output_tokens": 395
+  },
+  "total_cost_usd": 0.0017
+}
