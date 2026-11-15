@@ -1,0 +1,11 @@
+{
+  "task_id": "t-08",
+  "artifact_dir": "docs/lab3/runs/t-08-1794764580000",
+  "gates": {
+    "types": "pass",
+    "lint": "pass",
+    "tests": "pass",
+    "build": "pass"
+  },
+  "ci_run_url": "https://github.com/markiyan176/2026-2027-agentic-course-starter/actions"
+}
