@@ -27,5 +27,6 @@
     "lint": "pass",
     "tests": "pass",
     "build": "pass"
-  }
+  },
+  "ci_run_url": "https://github.com/markiyan176/2026-2027-agentic-course-starter/actions"
 }
