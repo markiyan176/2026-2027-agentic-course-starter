@@ -32,3 +32,20 @@
   - Коміт, зупинений верифікатором: `63a4ea8161949e95e01ac7cf686f37c217cd5746`, дослівний вердикт у `docs/lab3/verdicts/stopped-verify.json`
   - Зелений вердикт після виправлення: `docs/lab3/verdicts/latest-verify.json`, калібрування: `docs/lab3/verdicts/step02-calibration.json`, звіт: `docs/lab3/verifier.md`
 
+## Сесія 3 — Автоматичне зупинення, заморожений банк evals і регресійна брама (Кроки 03–04)
+
+- **Дата**: 2026-11-15
+- **Кроки**: 03 (Автоматичне зупинення: бюджет, таймаут, circuit breaker) та 04 (Evals у CI: еталонний набір задач і регресійна брама)
+- **Інструмент і модель**: Gemini CLI `0.57.0` (`gemini-2.5-flash`) + власний раннер `scripts/evals/run-evals.ts` і детерміновані оцінювачі `scripts/evals/graders.ts`
+- **Режим дозволів та дозволені інструменти**: `--approval-mode auto_edit` + `--allowed-tools read_file,edit,write_file,run_shell_command`, без обходу дозволів.
+- **Спосіб ізоляції**: окреме робоче дерево `git worktree` на кожну з `k = 3` спроб (`..\eval-runs\<id>-<attempt>`).
+- **Що делеговано агенту**: написання `src/harness/stop.ts`, `src/harness/breaker.ts`, розширення банку `docs/lab3/tasks.jsonl` до 24 задач (`14 regression`, `4 new`, `6 edge`), створення `scripts/evals/graders.ts`, `scripts/evals/run-evals.ts` та `scripts/evals/gate.ts`.
+- **Де перебили або виправили агента (втручання людини)**:
+  1. Під час чищення банку задач перед заморозкою відсіяно 3 задачі (`t-rej-01`..`t-rej-03`), які мали 0% проходження через помилки самих задач (суперечлива умова «перепиши `src/rag/` без зміни файлів у `src/`», відсутній тест `tests/legacy.test.ts` та нереалістичний бюджет `max_turns = 1`). Їх перенесено в `docs/lab3/tasks-rejected.jsonl` із поясненнями.
+  2. У `src/harness/breaker.ts` додано перевірку: коли брейкер уже перебуває у стані `half-open` (виконується перша пробна задача), паралельні виклики `mayRun()` блокуються, щоб гарантувати запуск рівно однієї пробної задачі.
+- **Докази**:
+  - Заморозка банку й базового рівня: коміт `64bce8c8401ffcd95bffc29c1e3391a0cf2206e7`, файли `docs/lab3/tasks.jsonl`, `docs/lab3/tasks-rejected.jsonl`, `docs/lab3/evals-baseline.json`
+  - Журнали зупинень і прогонів: `docs/lab3/stop-log.jsonl`, `docs/lab3/evals.jsonl`, `docs/lab3/evals-regression-caught.jsonl`
+  - Звіти: `docs/lab3/stop.md`, `docs/lab3/evals.md`
+
+
