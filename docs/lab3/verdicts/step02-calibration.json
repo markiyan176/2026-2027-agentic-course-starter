@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-15",
+  "executor": {
+    "family": "Google Gemini",
+    "model": "gemini-2.5-flash"
+  },
+  "verifier": {
+    "family": "Alibaba Qwen (Ollama local)",
+    "model": "qwen3:4b"
+  },
+  "metrics": {
+    "n": 12,
+    "raw": 0.9166666666666666,
+    "expected": 0.3541666666666667,
+    "kappa": 0.8709677419354839
+  },
+  "confusion_matrix": {
+    "pass": { "pass": 5, "fail": 0, "unknown": 0 },
+    "fail": { "pass": 0, "fail": 4, "unknown": 0 },
+    "unknown": { "pass": 0, "fail": 1, "unknown": 2 }
+  },
+  "cases": [
+    { "id": "cal-01", "task_id": "t-01", "criterion": "A1", "mine": "pass", "judge": "pass", "match": true, "note": "Чистий diff scripts/validate-golden.ts із тестами" },
+    { "id": "cal-02", "task_id": "t-01", "criterion": "A2", "mine": "fail", "judge": "fail", "match": true, "note": "Знижений поріг SUBMIT.total = 10 замість 20" },
+    { "id": "cal-03", "task_id": "t-02", "criterion": "A1", "mine": "fail", "judge": "fail", "match": true, "note": "Пропущений модульний тест через it.skip" },
+    { "id": "cal-04", "task_id": "t-02", "criterion": "A4", "mine": "unknown", "judge": "unknown", "match": true, "note": "Diff не зачіпає src/rag/ — спрацював аварійний вихід unknown" },
+    { "id": "cal-05", "task_id": "t-05", "criterion": "A3", "mine": "pass", "judge": "pass", "match": true, "note": "Схема criterionVerdict містить unknown та fail-closed isBlocked" },
+    { "id": "cal-06", "task_id": "t-05", "criterion": "A3", "mine": "fail", "judge": "fail", "match": true, "note": "Схема без unknown (z.enum(['pass', 'fail']))" },
+    { "id": "cal-07", "task_id": "t-04", "criterion": "A2", "mine": "fail", "judge": "fail", "match": true, "note": "Порожній must_cite: [] для easy-запиту" },
+    { "id": "cal-08", "task_id": "t-07", "criterion": "A8", "mine": "unknown", "judge": "fail", "match": false, "note": "На diff самої лише документації суддя поставив fail замість unknown до уточнення рубрики" },
+    { "id": "cal-09", "task_id": "t-05", "criterion": "A5", "mine": "pass", "judge": "pass", "match": true, "note": "Точне посилання на validateAnswer у src/rag/cite.ts" },
+    { "id": "cal-10", "task_id": "t-08", "criterion": "A8", "mine": "pass", "judge": "pass", "match": true, "note": "Регулярний вираз CHUNK_ID відхиляє ../../.env та doc-99#0000" },
+    { "id": "cal-11", "task_id": "t-06", "criterion": "A7", "mine": "unknown", "judge": "unknown", "match": true, "note": "У diff лише README без змін у scripts/parallel-eval.ts" },
+    { "id": "cal-12", "task_id": "t-03", "criterion": "A3", "mine": "pass", "judge": "pass", "match": true, "note": "Перевірка isBlocked(report) блокує як fail, так і unknown" }
+  ]
+}

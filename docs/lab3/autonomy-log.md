@@ -15,3 +15,20 @@
   - `scripts/harness/run-task.ts`, `scripts/harness/run-queue.ts`, `tests/harness/run-task.test.ts`
   - `docs/lab3/runs/t-01-1794764400000/run.json`, `docs/lab3/runs/t-02-1794764460000/run.json`, `docs/lab3/runs/t-05-1794764520000/run.json`, `docs/lab3/runs/t-08-1794764580000/run.json`
   - `docs/lab3/factory.md`
+
+## Сесія 2 — Детермінований ланцюг брам у CI та міжмодельний верифікатор (Кроки 01–02)
+
+- **Дата**: 2026-11-15
+- **Кроки**: 01 (Детерміновані брами в CI) та 02 (Верифікатор на іншій моделі як остання брама)
+- **Інструмент і модель**: Виконавець — Gemini CLI `0.57.0` (`gemini-2.5-flash`); верифікатор — локальна модель Ollama `qwen3:4b` (Alibaba Qwen3) через `scripts/verify.ts`
+- **Режим дозволів та дозволені інструменти**: `--approval-mode auto_edit` + `--allowed-tools read_file,edit,write_file,run_shell_command`, без обходу дозволів.
+- **Спосіб ізоляції**: окрема гілка `harness/red-2026-11-15` для перевірки червоної брами в GitHub Actions та робочі дерева `git worktree` для артефактів калібрування.
+- **Що делеговано агенту**: написання `.github/workflows/gates.yml` (`types → lint → tests → build → verify` + `record`), скрипту агрегації `scripts/harness/record-gates.mjs`, розрахунку каппи Коена `scripts/kappa.ts` та оновлення `isBlocked` у `src/verify/schema.ts` для блокування на `unknown`.
+- **Де перебили або виправили агента (втручання людини)**:
+  1. У `package.json` скрипт `"verify"` мав жорстко закодований аргумент `docs/lab2/verify-input.diff`, через що при першому запуску `npm run verify` ігнорувався новий вхідний файл `docs/lab3/verify-task-input.diff`. Виправлено `package.json` (`"verify": "tsx scripts/verify.ts"`), після чого верифікатор коректно заблокував зламану зміну в коміті `63a4ea8`.
+  2. Під час калібрування на 12 випадках виявлено розходження у випадку `cal-08` (суддя поставив `fail` замість `unknown` на diff самої лише документації). У промпт `scripts/verify.ts` додано явну вимогу повертати `"verdict":"unknown"` з порожнім `evidence`, якщо у diff немає даних щодо критерію.
+- **Докази**:
+  - Червоний прогін CI: [`43743832769`](https://github.com/markiyan176/2026-2027-agentic-course-starter/actions/runs/43743832769) на гілці `harness/red-2026-11-15` (`2edb8a0`)
+  - Коміт, зупинений верифікатором: `63a4ea8161949e95e01ac7cf686f37c217cd5746`, дослівний вердикт у `docs/lab3/verdicts/stopped-verify.json`
+  - Зелений вердикт після виправлення: `docs/lab3/verdicts/latest-verify.json`, калібрування: `docs/lab3/verdicts/step02-calibration.json`, звіт: `docs/lab3/verifier.md`
+
