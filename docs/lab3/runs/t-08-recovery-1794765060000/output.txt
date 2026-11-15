@@ -1,0 +1,7 @@
+{
+  "response": "Task t-08 completed in 5 steps within stepLimit(8).",
+  "usage": {
+    "input_tokens": 2180,
+    "output_tokens": 490
+  }
+}

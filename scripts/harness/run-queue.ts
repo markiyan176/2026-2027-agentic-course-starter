@@ -7,6 +7,7 @@ import { cpSync, existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { geminiRunner, runTaskTraced, type Task } from './run-task';
+import { mayRun, record } from '../../src/harness/breaker';
 
 const file = process.argv[2] && !process.argv[2].startsWith('--') ? process.argv[2] : 'docs/lab3/tasks.jsonl';
 const idIdx = process.argv.indexOf('--id');
@@ -27,6 +28,11 @@ if (tasks.length === 0) {
 const git = (args: string[], cwd = '.') => execFileSync('git', args, { cwd, encoding: 'utf8' });
 
 for (const task of tasks) {
+  const gate = mayRun();
+  if (!gate.allow) {
+    console.error(`Брейкер не пропускає задачу ${task.id}: ${gate.why}`);
+    break;
+  }
   const branch = `harness/${task.id}`;
   const tree = join('..', 'harness-runs', task.id);
 
@@ -50,6 +56,7 @@ for (const task of tasks) {
       worktree: tree,
       outDir: 'runs',
     });
+    record(rec.acceptance_passed, rec.acceptance_passed ? null : rec.exit_status);
 
     // Відібраний артефакт — у docs/lab3/runs/; сира runs/ лишається в .gitignore
     const keep = join('docs', 'lab3', 'runs', `${task.id}-${new Date(rec.started_at).getTime()}`);

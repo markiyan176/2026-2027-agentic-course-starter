@@ -1,0 +1,8 @@
+{
+  "state": "closed",
+  "fails": 0,
+  "noProgressCount": 0,
+  "openedAt": null,
+  "trip": null,
+  "cooldownMinutes": 30
+}

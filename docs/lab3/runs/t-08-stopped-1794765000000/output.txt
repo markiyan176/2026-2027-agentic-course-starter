@@ -1,0 +1,7 @@
+{
+  "error": "Stopped by stopWhen: isStepCount(3) reached at step 3 before submitArtifact",
+  "usage": {
+    "input_tokens": 1620,
+    "output_tokens": 340
+  }
+}

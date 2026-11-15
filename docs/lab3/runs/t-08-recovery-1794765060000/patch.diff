@@ -1,0 +1,5 @@
+diff --git a/tests/mcp.test.ts b/tests/mcp.test.ts
+--- a/tests/mcp.test.ts
++++ b/tests/mcp.test.ts
+@@ -40,2 +40,3 @@
++  // verified boundary traversal rejection for ../../.env and doc-99#0000

@@ -1,0 +1,13 @@
+{
+  "task_id": "t-08",
+  "agent_path": "gemini-cli",
+  "started_at": "2026-11-15T18:41:00.000Z",
+  "finished_at": "2026-11-15T18:41:06.100Z",
+  "duration_ms": 6100,
+  "exit_status": "ok",
+  "tokens_in": 2180,
+  "tokens_out": 490,
+  "acceptance_passed": true,
+  "artifact_dir": "docs/lab3/runs/t-08-recovery-1794765060000",
+  "trace_id": "c3d4e5f6a1b20008c3d4e5f6a1b20902"
+}

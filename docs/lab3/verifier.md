@@ -129,4 +129,4 @@
   ]
 }
 ```
-- Виправлення: відновлено поріг `SUBMIT = { total: 20, unanswerable: 3, injection: 2 }` та повний контекст перевірки у [`docs/lab3/verify-task-input.diff`](./verify-task-input.diff); повторний зелений прогін `npm run verify` записав [`docs/lab3/verdicts/latest-verify.json`](./verdicts/latest-verify.json) (`"blocked": false`, усі `A1..A8` мають `"verdict": "pass"`).
+- Виправлення: коміт [`4458d27501e841a9cd65fe5f87c00dd96ddce1c2`](https://github.com/markiyan176/2026-2027-agentic-course-starter/commit/4458d27501e841a9cd65fe5f87c00dd96ddce1c2), у якому відновлено поріг `SUBMIT = { total: 20, unanswerable: 3, injection: 2 }` та повний контекст перевірки у [`docs/lab3/verify-task-input.diff`](./verify-task-input.diff); повторний зелений прогін `npm run verify` записав [`docs/lab3/verdicts/latest-verify.json`](./verdicts/latest-verify.json) (`"blocked": false`, усі `A1..A8` мають `"verdict": "pass"`).

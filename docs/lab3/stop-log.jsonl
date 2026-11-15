@@ -1,0 +1,2 @@
+{"at":"2026-11-15T18:07:50.888Z","taskId":"t-08","limit":"isStepCount","n":3,"step":3,"actionTaken":"stopped_loop_marked_budget_or_turns_recorded_breaker"}
+{"at":"2026-11-15T18:10:05.000Z","taskId":"t-08","limit":"circuitBreaker","actionTaken":"breaker_opened_immediately_on_HTTP_429_cooldown_30m"}

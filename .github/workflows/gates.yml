@@ -105,12 +105,19 @@ jobs:
       verdict: ${{ steps.g.outputs.verdict }}
     steps:
       - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v8
+        continue-on-error: true
+        with:
+          name: breaker
+          path: .harness
       - uses: actions/setup-node@v7
         with:
           node-version: '22'
           cache: npm
       - run: npm ci
       - id: g
+        name: Міжмодельна верифікація змін
+        timeout-minutes: 8
         run: |
           npm run verify
           echo "verdict=pass" >> "$GITHUB_OUTPUT"
@@ -121,6 +128,12 @@ jobs:
         with:
           name: verdicts
           path: docs/lab3/verdicts/
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v7
+        if: ${{ !cancelled() }}
+        with:
+          name: breaker
+          path: .harness/breaker.json
           if-no-files-found: ignore
 
   record:
