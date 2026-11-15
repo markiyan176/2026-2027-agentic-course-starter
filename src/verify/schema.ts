@@ -1,15 +1,15 @@
 import { z } from 'zod';
 
-/** Один критерій приймання зі specs — один запис вердикту. */
+/** Один критерій приймання задачі з черги або специфікації — один запис вердикту. */
 export const criterionVerdict = z
   .object({
-    /** Номер критерію з docs/lab2/spec.md, дослівно. */
+    /** Ідентифікатор критерію з опису задачі або spec.md, дослівно. */
     id: z.string().min(1),
-    /** unknown — аварійний вихід: даних у наданій зміні недостатньо для судження. */
+    /** unknown — аварійний вихід: даних в артефакті недостатньо для судження. */
     verdict: z.enum(['pass', 'fail', 'unknown']),
     /** Чому саме так. Одне-два речення, без загальних порад. */
     reason: z.string().min(1).max(280),
-    /** Файл і рядок або цитата зі зміни; порожньо лише для unknown. */
+    /** Файл і рядок або цитата з артефакту; порожньо лише для unknown. */
     evidence: z.string(),
   })
   .strict();
@@ -20,7 +20,10 @@ export const verifyReport = z.object({ results: z.array(criterionVerdict).min(1)
 
 export type VerifyReport = z.infer<typeof verifyReport>;
 
-/** Брама: червоно, щойно є хоч один fail. unknown браму не валить, але потрапляє у звіт. */
+/**
+ * УВАГА: у Лаб. 2 браму валив лише fail. У автономному харнесі Лаб. 3 блокує все,
+ * що не pass: unknown нікому розбирати вручну, бо прогін автономний.
+ */
 export function isBlocked(report: VerifyReport): boolean {
-  return report.results.some((r) => r.verdict === 'fail');
+  return report.results.some((r) => r.verdict !== 'pass');
 }

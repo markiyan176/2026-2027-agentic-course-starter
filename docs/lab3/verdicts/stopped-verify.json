@@ -1,0 +1,55 @@
+{
+  "model": "qwen3:4b",
+  "input": "docs/lab3/verify-task-input.diff",
+  "blocked": true,
+  "results": [
+    {
+      "id": "A1",
+      "verdict": "pass",
+      "reason": "У зміні присутні модульні тести без мережевих викликів і без .skip.",
+      "evidence": "tests/validate-golden.test.ts: describe(\"validateGolden\"), tests/mcp.test.ts"
+    },
+    {
+      "id": "A2",
+      "verdict": "fail",
+      "reason": "Поріг SUBMIT.total знижено до 10, хоча критерій A2 вимагає ≥ 20 запитів.",
+      "evidence": "scripts/validate-golden.ts: SUBMIT = { total: 10 }"
+    },
+    {
+      "id": "A3",
+      "verdict": "pass",
+      "reason": "Схема містить pass/fail/unknown, а функція isBlocked працює за принципом fail-closed.",
+      "evidence": "src/verify/schema.ts:10-28 (criterionVerdict, isBlocked)"
+    },
+    {
+      "id": "A4",
+      "verdict": "unknown",
+      "reason": "У наданому diff немає змін, що прямо стосуються критерію A4.",
+      "evidence": ""
+    },
+    {
+      "id": "A5",
+      "verdict": "unknown",
+      "reason": "У наданому diff немає змін, що прямо стосуються критерію A5.",
+      "evidence": ""
+    },
+    {
+      "id": "A6",
+      "verdict": "unknown",
+      "reason": "У наданому diff немає змін, що прямо стосуються критерію A6.",
+      "evidence": ""
+    },
+    {
+      "id": "A7",
+      "verdict": "unknown",
+      "reason": "У наданому diff немає змін, що прямо стосуються критерію A7.",
+      "evidence": ""
+    },
+    {
+      "id": "A8",
+      "verdict": "pass",
+      "reason": "MCP-сервер перевіряє CHUNK_ID, allowlist індексу та містить тести відмови на ../../.env і doc-99#0000.",
+      "evidence": "src/mcp/tools.ts:21 (CHUNK_ID), tests/mcp.test.ts:43 (doc-99#0000)"
+    }
+  ]
+}

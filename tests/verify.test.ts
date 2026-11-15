@@ -16,18 +16,18 @@ const sampleCriterion: SpecCriterion = {
 };
 
 describe('src/verify/schema & scripts/verify', () => {
-  it('приймає коректний звіт і не блокує pass + unknown', () => {
+  it('пропускає звіт лише коли всі критерії мають вердикт pass', () => {
     const report = verifyReport.parse({
       results: [
         { id: 'A1', verdict: 'pass', reason: 'Усі тести проходять.', evidence: 'tests/validate-golden.test.ts:16' },
-        { id: 'A3', verdict: 'unknown', reason: 'У diff немає змін верифікатора.', evidence: '' },
+        { id: 'A2', verdict: 'pass', reason: 'Поріг 20 запитів виконано.', evidence: 'scripts/validate-golden.ts:29' },
       ],
     });
     expect(isBlocked(report)).toBe(false);
   });
 
-  it('блокує звіт, щойно є хоча б один fail', () => {
-    const report = verifyReport.parse({
+  it('блокує звіт у харнесі, якщо є хоча б один fail або unknown', () => {
+    const withFail = verifyReport.parse({
       results: [
         { id: 'A1', verdict: 'pass', reason: 'Тести є.', evidence: 'tests/validate-golden.test.ts:1' },
         {
@@ -38,7 +38,15 @@ describe('src/verify/schema & scripts/verify', () => {
         },
       ],
     });
-    expect(isBlocked(report)).toBe(true);
+    expect(isBlocked(withFail)).toBe(true);
+
+    const withUnknown = verifyReport.parse({
+      results: [
+        { id: 'A1', verdict: 'pass', reason: 'Тести є.', evidence: 'tests/validate-golden.test.ts:1' },
+        { id: 'A3', verdict: 'unknown', reason: 'У diff немає змін верифікатора.', evidence: '' },
+      ],
+    });
+    expect(isBlocked(withUnknown)).toBe(true);
   });
 
   it('відхиляє невідомі поля або порожній results через .strict()', () => {

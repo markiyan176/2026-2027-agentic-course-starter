@@ -97,6 +97,32 @@ jobs:
             dist/**
           if-no-files-found: ignore
 
+  verify:
+    needs: [types, lint, tests, build]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      verdict: ${{ steps.g.outputs.verdict }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - id: g
+        run: |
+          npm run verify
+          echo "verdict=pass" >> "$GITHUB_OUTPUT"
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      - uses: actions/upload-artifact@v7
+        if: ${{ !cancelled() }}
+        with:
+          name: verdicts
+          path: docs/lab3/verdicts/
+          if-no-files-found: ignore
+
   record:
     # складається й на червоному прогоні; needs бачить ЛИШЕ прямі залежності,
     # тому тут перелічені всі чотири брами, а не одна остання
