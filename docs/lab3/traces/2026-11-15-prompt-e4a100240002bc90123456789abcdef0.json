@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-15",
+  "class": "prompt",
+  "task_id": "t-24",
+  "attempt": 2,
+  "trace_id": "e4a100240002bc90123456789abcdef0",
+  "chat_spans_count": 2,
+  "input_tokens": 2780,
+  "output_tokens": 766,
+  "duration_s": 7.9,
+  "cost_usd_estimate": 0.0877,
+  "evidence": "ambiguous prompt \"Оптимізуй усе в проєкті\" caused unneeded edit in README.md, failing grader no_changes (patch length 46 chars)",
+  "spans": [
+    {
+      "name": "invoke_agent gemini-2.5-flash",
+      "kind": "INTERNAL",
+      "attributes": {
+        "gen_ai.operation.name": "invoke_agent",
+        "gen_ai.provider.name": "google",
+        "gen_ai.request.model": "gemini-2.5-flash",
+        "gen_ai.agent.name": "harness-run-task",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.usage.input_tokens": 2780,
+        "gen_ai.usage.output_tokens": 766
+      }
+    },
+    {
+      "name": "chat gemini-2.5-flash",
+      "kind": "CLIENT",
+      "attributes": {
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "google"
+      }
+    },
+    {
+      "name": "execute_tool edit",
+      "kind": "INTERNAL",
+      "attributes": {
+        "gen_ai.tool.name": "edit"
+      }
+    }
+  ]
+}

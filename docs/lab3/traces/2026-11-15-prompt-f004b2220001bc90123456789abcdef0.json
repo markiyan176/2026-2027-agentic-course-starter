@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-15",
+  "class": "prompt",
+  "task_id": "t-04",
+  "attempt": 1,
+  "trace_id": "f004b2220001bc90123456789abcdef0",
+  "chat_spans_count": 1,
+  "input_tokens": 1310,
+  "output_tokens": 260,
+  "duration_s": 3.1,
+  "cost_usd_estimate": 0.0352,
+  "evidence": "root span invoke_agent finished with gen_ai.response.finish_reasons=[\"stop\"], 0 execute_tool spans, and empty patch.diff (agent answered in prose instead of acting)",
+  "spans": [
+    {
+      "name": "invoke_agent gemini-2.5-flash",
+      "kind": "INTERNAL",
+      "attributes": {
+        "gen_ai.operation.name": "invoke_agent",
+        "gen_ai.provider.name": "google",
+        "gen_ai.request.model": "gemini-2.5-flash",
+        "gen_ai.agent.name": "harness-run-task",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.usage.input_tokens": 1310,
+        "gen_ai.usage.output_tokens": 260
+      }
+    },
+    {
+      "name": "chat gemini-2.5-flash",
+      "kind": "CLIENT",
+      "attributes": {
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "google"
+      }
+    }
+  ]
+}

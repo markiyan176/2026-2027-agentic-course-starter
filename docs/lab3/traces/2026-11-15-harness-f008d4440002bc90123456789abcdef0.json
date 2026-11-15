@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-15",
+  "class": "harness",
+  "task_id": "t-01",
+  "attempt": 1,
+  "trace_id": "f008d4440002bc90123456789abcdef0",
+  "chat_spans_count": 8,
+  "input_tokens": 2890,
+  "output_tokens": 610,
+  "duration_s": 7.4,
+  "cost_usd_estimate": 0.0799,
+  "evidence": "cross-model verifier gate (qwen3:4b) blocked merge on commit 63a4ea8 due to A2=fail and A4..A7=unknown (docs/lab3/verdicts/stopped-verify.json)",
+  "spans": [
+    {
+      "name": "invoke_agent qwen3:4b",
+      "kind": "INTERNAL",
+      "attributes": {
+        "gen_ai.operation.name": "invoke_agent",
+        "gen_ai.provider.name": "ollama",
+        "gen_ai.request.model": "qwen3:4b",
+        "gen_ai.agent.name": "harness-verifier",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.usage.input_tokens": 2890,
+        "gen_ai.usage.output_tokens": 610
+      }
+    }
+  ]
+}

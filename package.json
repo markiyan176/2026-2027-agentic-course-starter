@@ -26,10 +26,13 @@
   "dependencies": {
     "@ai-sdk/google": "^4.0.69",
     "@ai-sdk/openai-compatible": "^3.0.48",
+    "@ai-sdk/otel": "^1.0.118",
     "@langfuse/otel": "^5.11.1",
     "@langfuse/vercel-ai-sdk": "^5.11.1",
     "@modelcontextprotocol/client": "^2.4.0",
     "@modelcontextprotocol/server": "^2.4.0",
+    "@opentelemetry/api": "^1.9.1",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.222.0",
     "@opentelemetry/sdk-node": "^0.222.0",
     "ai": "^7.0.99",
     "next": "^16.3.4",

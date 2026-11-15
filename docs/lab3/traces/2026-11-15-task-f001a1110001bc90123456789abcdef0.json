@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-15",
+  "class": "task",
+  "task_id": "t-rej-01",
+  "attempt": 1,
+  "trace_id": "f001a1110001bc90123456789abcdef0",
+  "chat_spans_count": 3,
+  "input_tokens": 1840,
+  "output_tokens": 410,
+  "duration_s": 5.2,
+  "cost_usd_estimate": 0.0522,
+  "evidence": "acceptance command \"vitest run tests/search.test.ts\" failed 3/3 times due to contradictory task requirement (rewrite src/rag/ without touching src/)",
+  "spans": [
+    {
+      "name": "invoke_agent gemini-2.5-flash",
+      "kind": "INTERNAL",
+      "attributes": {
+        "gen_ai.operation.name": "invoke_agent",
+        "gen_ai.provider.name": "google",
+        "gen_ai.request.model": "gemini-2.5-flash",
+        "gen_ai.agent.name": "harness-run-task",
+        "gen_ai.response.finish_reasons": [
+          "stop"
+        ],
+        "gen_ai.usage.input_tokens": 1840,
+        "gen_ai.usage.output_tokens": 410
+      }
+    },
+    {
+      "name": "chat gemini-2.5-flash",
+      "kind": "CLIENT",
+      "attributes": {
+        "gen_ai.operation.name": "chat",
+        "gen_ai.provider.name": "google"
+      }
+    },
+    {
+      "name": "execute_tool read_file",
+      "kind": "INTERNAL",
+      "attributes": {
+        "gen_ai.tool.name": "read_file"
+      }
+    }
+  ]
+}
