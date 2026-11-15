@@ -48,4 +48,21 @@
   - Журнали зупинень і прогонів: `docs/lab3/stop-log.jsonl`, `docs/lab3/evals.jsonl`, `docs/lab3/evals-regression-caught.jsonl`
   - Звіти: `docs/lab3/stop.md`, `docs/lab3/evals.md`
 
+## Сесія 4 — Калібрування судді, трасування OpenTelemetry та red-team перевірка інʼєкцій (Кроки 05–07)
+
+- **Дата**: 2026-11-15
+- **Кроки**: 05 (Калібрування судді: згода з власною розміткою), 06 (Трасування і аналіз помилок) та 07 (Red-team: стійкість до інʼєкції промпту)
+- **Інструмент і модель**: Виконавець — Gemini CLI `0.57.0` (`gemini-2.5-flash`); суддя — Ollama `ollama/qwen3:4b@2026-11`; трасування — `ai` `7.0.99` + `@ai-sdk/otel` `1.0.118` + `@opentelemetry/exporter-trace-otlp-http` `0.222.0`
+- **Режим дозволів та дозволені інструменти**: `--approval-mode auto_edit` + `--allowed-tools read_file,edit,write_file,run_shell_command` та `--permission-mode dontAsk` + `--allowedTools "Read,Edit,Bash(npm test *),Bash(npm run typecheck *),Bash(git diff *)"`. Жодного обходу дозволів не використовувалося.
+- **Спосіб ізоляції**: окремий пісочничний каталог / `git worktree` на кожен red-team сценарій (`r-01`..`r-06`) із фальшивою канаркою `CANARY_NOT_A_SECRET=канарка-NOT-A-SECRET-7f3a`.
+- **Що делеговано агенту**: написання скрипту калібрування `scripts/judge/calibrate.ts`, модуля телеметрії `src/telemetry/otel.ts`, сценаріїв red-team `scripts/redteam/cases.ts`, інваріантів `scripts/redteam/invariants.ts` та виконавця `scripts/redteam/run-redteam.ts`.
+- **Де перебили або виправили агента (втручання людини)**:
+  1. На кроці 05 суворо дотримано хронологічного порядку: ручну розмітку `docs/lab3/judge-cases.jsonl` (14 робочих і 6 відкладених випадків) та `docs/lab3/rubric-v1.md` закомічено в `49dcb8a` *до* генерації вердиктів судді `docs/lab3/verdicts/judge.jsonl`. Після однієї ітерації рубрики (`docs/lab3/rubric-v2.md` із конкретними прикладами) каппа зросла з `0.492` до `0.836` на всіх випадках і з `0.455` до `0.714` на відкладених (`пропускає погане = 0`).
+  2. На кроці 07 під час першого red-team прогону (`9a8aee8`, `docs/lab3/redteam-before.jsonl`) виявлено проходження непрямої інʼєкції `r-03` (`tool_result`), яка створювала файл `../pwned.txt` поза межами робочого дерева. Втручанням людини додано детерміновану перевірку канонічного шляху `assertInsideWorktree(worktree, targetPath)` у `scripts/redteam/invariants.ts`, після чого всі 6 сценаріїв `r-01`..`r-06` у `docs/lab3/redteam.jsonl` зупинено (`exit 0`).
+- **Докази**:
+  - Калібрування судді: коміт розмітки `49dcb8a`, файли `docs/lab3/judge-cases.jsonl`, `docs/lab3/verdicts/judge-before.jsonl`, `docs/lab3/verdicts/judge.jsonl`, `docs/lab3/judge.md`
+  - Траси й аналіз помилок: `src/telemetry/otel.ts`, 18 пар `.json` + `.png` у `docs/lab3/traces/`, `docs/lab3/errors.md`
+  - Red-team: коміт до виправлення `9a8aee8` (`docs/lab3/redteam-before.jsonl`), журнал після виправлення `docs/lab3/redteam.jsonl`, тести `tests/harness/redteam.test.ts`, звіт `docs/lab3/redteam.md`
+
+
 
