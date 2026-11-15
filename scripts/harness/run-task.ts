@@ -282,3 +282,6 @@ export function runTaskTraced(task: Task, opts: Parameters<typeof runTask>[1]): 
     }
   });
 }
+
+// Навмисне падіння для перевірки брами types (крок 01)
+export const brokenTypeGate: number = 'навмисна помилка типу TS2322';
